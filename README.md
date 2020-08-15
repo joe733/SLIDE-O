@@ -3,6 +3,7 @@
 - SLIDE-O is state of the art multifunction switch
 - SLIDE-O can do much more in the same form factor of a regular push button
 - Many ways to interact with SLIDE-O:
+      
       - Surface Slide - Screen scroll
       - Gentle Tap - Select/Unselect
       - Tap Edges - Volume Up/ Volume Down
