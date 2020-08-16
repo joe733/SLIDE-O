@@ -12,4 +12,4 @@
 - SLIDE-O can elegantly replace the power button
 
 
-This project is done in collaboration with [Ashwin CS](https://github.com/ash-win-cs) 
+This project is done in collaboration with [Ashwin CS](https://github.com/ash-win-cs) ,[Rahul R](https://github.com/Rahul24-R)
