@@ -10,7 +10,7 @@ unsigned long t1, t2, t3;
 void setup()
 {
   DigiMouse.begin(); // start or reenumerate USB - BREAKING CHANGE from old versions that didn't require this
-  t1 = t1 = t3 = 0;
+  t1 = t2 = t3 = 0;
   pinMode(cSens1, INPUT);
   pinMode(cSens2, INPUT);
   pinMode(cSens3, INPUT);
