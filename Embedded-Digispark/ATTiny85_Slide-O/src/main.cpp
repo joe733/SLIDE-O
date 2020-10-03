@@ -1,12 +1,15 @@
 #include <Arduino.h>
- #include <DigiMouse.h>
+#include <DigiMouse.h>
+
+#define KEY_MUTE 127
+#define KEY_VOLUME_UP 128
+#define KEY_VOLUME_DOWN 129
 
 #define cSens1 0
 #define cSens2 1
 #define cSens3 2
 
 unsigned long t1,t2,t3;
-byte scrolldelay=2;
  
 
 void setup() {
@@ -17,7 +20,6 @@ void setup() {
 }
 
 void loop() {
-  scrolldelay = map(abs(t1-t3),0,1000,10,2);
  if (digitalRead(cSens1))             //Creating Timestamp
    t1=millis();
  else if (digitalRead(cSens2))
@@ -34,9 +36,23 @@ void loop() {
  }
  else if(t2 && !(t3||t1)){   
     DigiMouse.setButtons(1<<0); //left click
-    DigiMouse.delay(500);
+    DigiMouse.delay(100);
     DigiMouse.setButtons(0);
-    t2 =0;
+    t2=0;
+
+ }
+ else if(t3 && !(t2||t1)){   
+    DigiMouse.setButtons(2<<0); //left click
+    DigiMouse.delay(100);
+    DigiMouse.setButtons(0);
+    t3=0;
+
+ }
+ else if(t1 && !(t2||t3)){   
+    DigiMouse.setButtons(3<<0); //left click
+    DigiMouse.delay(100);
+    DigiMouse.setButtons(0);
+    t1=0;
 
  }
  else
