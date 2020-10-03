@@ -5,12 +5,9 @@
 #define cSens2 1
 #define cSens3 2
 
-unsigned long t1;
-unsigned long t2;
-unsigned long t3;
+unsigned long t1,t2,t3;
+byte scrolldelay=2;
  
-bool upscroll;
-bool dscroll;
 
 void setup() {
   DigiMouse.begin(); //start or reenumerate USB - BREAKING CHANGE from old versions that didn't require this
@@ -20,21 +17,27 @@ void setup() {
 }
 
 void loop() {
+  scrolldelay = map(abs(t1-t3),0,1000,10,2);
  if (digitalRead(cSens1))             //Creating Timestamp
    t1=millis();
  else if (digitalRead(cSens2))
    t2=millis();
- else if (digitalRead(cSens3)){
-   t3=millis();
- }
- 
+ else if (digitalRead(cSens3))
+    t3=millis(); 
  else if(t3>t1 && t1!=0){                    //Comparing Timestamp
-   DigiMouse.scroll(2);
+   DigiMouse.scroll(-3);
    t1=t2=t3=0;                      // Once executed Resetting all timestamps
  }
  else if(t3<t1 && t3!=0){
-   DigiMouse.scroll(-2);
+   DigiMouse.scroll(3);
    t1=t2=t3=0;                      // Once executed Resetting all timestamps
+ }
+ else if(t2 && !(t3||t1)){   
+    DigiMouse.setButtons(1<<0); //left click
+    DigiMouse.delay(500);
+    DigiMouse.setButtons(0);
+    t2 =0;
+
  }
  else
    DigiMouse.update();
